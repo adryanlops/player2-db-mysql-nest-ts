@@ -1,5 +1,6 @@
 import { IsNotEmpty, IsNumber } from "class-validator";
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Category } from "../../category/entities/category.entity";
 
 
 
@@ -21,4 +22,7 @@ export class Product{
     @IsNotEmpty()
     @Column({ type: "varchar", length: 500 })
     description: string;
+
+    @ManyToOne(() => Category, (category) => category.products)
+    category: Category;
 }
